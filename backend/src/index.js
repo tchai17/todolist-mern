@@ -1,4 +1,7 @@
-const express = require('express');
+import express from 'express';
+import mongoose from 'mongoose';
+
+mongoose.connect(process.env.MONGODB_CONNECTION_STRING).catch( error => console.log(error) );
 
 const app = express();
 const port = 3000;
