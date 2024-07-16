@@ -6,10 +6,10 @@ function ToDoList() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/items/")
-      .then((response) => setExpenses(response.data))
+      .get("http://localhost:3000/items/")
+      .then((response) => setItems(response.data))
       .catch((error) =>
-        console.error("There was an error fetching the expenses!", error)
+        console.error("There was an error fetching the ToDoList!", error)
       );
   }, []);
 

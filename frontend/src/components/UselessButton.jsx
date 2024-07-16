@@ -8,7 +8,7 @@ function UselessButton() {
       <button
         onClick={() => setCount((count) => count + 1)}
         className="bg-violet-500 hover:bg-violet-600 active:bg-violet-700 
-          focus:outline-none focus:ring focus:ring-violet-300 text-white font-bold py-2 px-4 rounded"
+          focus:outline-none focus:ring focus:ring-violet-300 text-white text-xl font-bold py-4 px-8 rounded m-10"
       >
         count is {count}
       </button>
