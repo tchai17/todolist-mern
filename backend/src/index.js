@@ -2,8 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import "dotenv/config";
-import moment from 'moment';
-import tasks from './routes/tasks.js';
+import router from './routes/tasks.js';
 
 const app = express();
 const port = 3000;
@@ -15,7 +14,7 @@ app.get('/', (req, res) => {
 	res.send('Hello, World!');
 })
 
-app.use('/tasks', tasks);
+app.use('/tasks', router);
 
 mongoose
   .connect(process.env.MONGODB_CONNECTION_STRING)

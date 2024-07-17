@@ -5,7 +5,7 @@ import moment from 'moment';
 const router = express.Router();
 
 // Create new task and save to database
-router.post('/tasks', async (req, res) => {
+router.post('/', async (req, res) => {
 	try{
 		// check if task attributes are received
 		if (
@@ -41,7 +41,7 @@ router.post('/tasks', async (req, res) => {
 });
 
 // Get all tasks from database
-router.get('/tasks', async (req, res) => {
+router.get('/', async (req, res) => {
 	try {
 		const tasks = await Task.find({});
 		return res.status(200).json(tasks);
@@ -52,7 +52,7 @@ router.get('/tasks', async (req, res) => {
 });
 
 // Update task in the database
-router.put('/tasks/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
 	try {
 
 		// check if task attributes are received
@@ -83,7 +83,7 @@ router.put('/tasks/:id', async (req, res) => {
 });
 
 // Delete task in database
-router.delete('/tasks/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
 	try {
 		// find task in database and delete
 		const { id } = req.params;
