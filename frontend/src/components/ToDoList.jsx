@@ -19,7 +19,7 @@ function ToDoList() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/items/")
+      .get("http://localhost:3000/tasks/")
       .then((response) => settoDoItems(response.data))
       .catch((error) =>
         console.error("There was an error fetching the ToDoList!", error)
