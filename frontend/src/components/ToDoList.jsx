@@ -15,21 +15,6 @@ import {
 import AddTask from "./AddTask";
 
 function ToDoList() {
-  const [toDoItems1, settoDoItems] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:3000/tasks/")
-      .then((response) => settoDoItems(response.data))
-      .catch((error) =>
-        console.error("There was an error fetching the ToDoList!", error)
-      );
-  }, []);
-
-  // define css classes for table title
-  const tableTitleFormat =
-    "text-500 font-sans text-lg font-semibold text-start";
-
   // sample data, replace when endpoint is setup
   const toDoItems = [
     {
@@ -59,7 +44,24 @@ function ToDoList() {
     },
   ];
 
-  const ToDoItemsMap = toDoItems.map((task, index) => (
+  const [toDoItems1, setToDoItems] = useState(toDoItems);
+
+  useEffect(() => {
+    axios({
+      method: "GET",
+      url: "http://localhost:3000/tasks",
+    })
+      .then((response) => setToDoItems(response.data))
+      .catch((error) =>
+        console.error("Error connecting to backend server", error)
+      );
+  }, []);
+
+  // define css classes for table title
+  const tableTitleFormat =
+    "text-500 font-sans text-lg font-semibold text-start";
+
+  const ToDoItemsMap = toDoItems1.map((task, index) => (
     <ToDoItem
       key={index}
       description={task.description}
