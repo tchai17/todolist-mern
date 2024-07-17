@@ -83,7 +83,7 @@ function ToDoList() {
           <TableHeader>
             <TableRow>
               <TableHead className={tableTitleFormat}>Description</TableHead>
-              <TableHead className={tableTitleFormat}>Done?</TableHead>
+              {/* <TableHead className={tableTitleFormat}>Done?</TableHead> */}
               <TableHead className={tableTitleFormat}>Created Date</TableHead>
               <TableHead className={tableTitleFormat + " text-center"}>
                 Actions

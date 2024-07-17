@@ -13,7 +13,6 @@ function App() {
       {/* <div className="card flex flex-col items-center">
         <UselessButton />
       </div> */}
-      <ConnectionTest />
     </>
   );
 }

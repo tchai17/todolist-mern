@@ -9,7 +9,7 @@ function ToDoItem({ _id, description, isDone, createdDate }) {
   return (
     <TableRow>
       <TableCell className={cellFormat}>{description}</TableCell>
-      <TableCell className={cellFormat}>{isDone ? "Yes" : "No"}</TableCell>
+      {/* <TableCell className={cellFormat}>{isDone ? "Yes" : "No"}</TableCell> */}
       <TableCell className={cellFormat}>
         {new Date(createdDate).toLocaleDateString()}
       </TableCell>
