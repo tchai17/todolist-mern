@@ -24,7 +24,7 @@ const ToDoItem = ({ description, isDone, createdDate }) => {
         {isDone ? "Yes" : "No"}
       </TableCell>
       <TableCell className={cellFormat + conditionalShade}>
-        {createdDate.toLocaleDateString()}
+        {new Date(createdDate).toLocaleDateString()}
       </TableCell>
       <TableCell className={cellFormat + " text-center " + conditionalShade}>
         {doneButton(isDone)}
