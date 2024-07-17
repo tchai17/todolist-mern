@@ -1,11 +1,13 @@
 import express from 'express';
-import mongoose from 'mongoose'; 
+import mongoose from 'mongoose';
+import cors from 'cors';
 import "dotenv/config";
 import { Task } from './models/task.js';
 
 const app = express();
 const port = 3000;
 
+app.use(cors());
 app.use(express.json()); // middleware for parsing request body
 
 app.get('/', (req, res) => {
