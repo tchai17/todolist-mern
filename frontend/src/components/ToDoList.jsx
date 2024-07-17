@@ -62,16 +62,15 @@ function ToDoList() {
     "text-500 font-sans text-lg font-semibold text-start";
 
   const ToDoItemsMap = toDoItems1.map((task, index) => {
-    if (!task.isDone)
-      return (
-        <ToDoItem
-          key={index}
-          _id={task._id}
-          description={task.description}
-          isDone={task.isDone}
-          createdDate={task.createdDate}
-        />
-      );
+    return (
+      <ToDoItem
+        key={index}
+        _id={task._id}
+        description={task.description}
+        isDone={task.isDone}
+        createdDate={task.createdDate}
+      />
+    );
   });
 
   if (toDoItems.length === 0) {
