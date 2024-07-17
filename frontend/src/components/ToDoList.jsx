@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ToDoItem from "./ToDoItem";
 import axios from "axios";
 
+// import from shadcn
 import {
   Table,
   TableBody,
@@ -12,7 +13,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import AddTask from "./AddTask";
-
 
 function ToDoList() {
   const [toDoItems1, settoDoItems] = useState([]);
@@ -26,7 +26,7 @@ function ToDoList() {
       );
   }, []);
 
-
+  // define css classes for table title
   const tableTitleFormat =
     "text-500 font-sans text-lg font-semibold text-start";
 
@@ -72,8 +72,8 @@ function ToDoList() {
     return <p>No toDoItems yet!</p>;
   } else {
     return (
-      <div className="font-sans">
-        <Table>
+      <>
+        <Table className="font-sans">
           <TableHeader>
             <TableRow>
               <TableHead className={tableTitleFormat}>Description</TableHead>
@@ -87,7 +87,7 @@ function ToDoList() {
           <TableBody>{ToDoItemsMap}</TableBody>
         </Table>
         <AddTask />
-      </div>
+      </>
     );
   }
 }
