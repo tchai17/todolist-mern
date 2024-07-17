@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Task from "./Task";
+import ToDoItem from "./ToDoItem";
 import axios from "axios";
 import {
   Table,
@@ -12,12 +12,12 @@ import {
 } from "@/components/ui/table";
 
 function ToDoList() {
-  const [tasks1, setTasks] = useState([]);
+  const [toDoItems1, settoDoItems] = useState([]);
 
   useEffect(() => {
     axios
       .get("http://localhost:3000/items/")
-      .then((response) => setTasks(response.data))
+      .then((response) => settoDoItems(response.data))
       .catch((error) =>
         console.error("There was an error fetching the ToDoList!", error)
       );
@@ -27,7 +27,7 @@ function ToDoList() {
     "text-500 font-sans text-lg font-semibold text-start";
 
   // sample data, replace when endpoint is setup
-  const tasks = [
+  const toDoItems = [
     {
       description: "test1",
       isDone: true,
@@ -55,8 +55,8 @@ function ToDoList() {
     },
   ];
 
-  const taskItems = tasks.map((task, index) => (
-    <Task
+  const ToDoItemsMap = toDoItems.map((task, index) => (
+    <ToDoItem
       key={index}
       description={task.description}
       isDone={task.isDone}
@@ -64,8 +64,8 @@ function ToDoList() {
     />
   ));
 
-  if (tasks.length === 0) {
-    return <p>No tasks yet!</p>;
+  if (toDoItems.length === 0) {
+    return <p>No toDoItems yet!</p>;
   } else {
     return (
       <div className="font-sans">
@@ -75,9 +75,12 @@ function ToDoList() {
               <TableHead className={tableTitleFormat}>Description</TableHead>
               <TableHead className={tableTitleFormat}>Done?</TableHead>
               <TableHead className={tableTitleFormat}>Created Date</TableHead>
+              <TableHead className={tableTitleFormat + " text-center"}>
+                Mark As Done
+              </TableHead>
             </TableRow>
           </TableHeader>
-          <TableBody>{taskItems}</TableBody>
+          <TableBody>{ToDoItemsMap}</TableBody>
         </Table>
       </div>
     );
