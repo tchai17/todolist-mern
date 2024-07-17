@@ -33,6 +33,7 @@ const addTask = () => {
     })
     .then( (response) => {
         console.log(response);
+        location.reload();
     })
     .catch( (error) => {
         console.log(error);
@@ -41,20 +42,26 @@ const addTask = () => {
 
   return (
     <>
-      <Button size="icon md" onClick={onClick}>
-        <Plus className="h-5 w-5" />
-      </Button>
-      {showInput && (
-        <div>
-          <Input
-            type="text"
-            placeholder="Add Task"
-            onChange={onChange}
-            value={task}
-          />
-          <Button onClick={addTask}>Add</Button>
+    <div className="flex flex-row">
+        <div className="flex-none">
+        <Button size="icon" onClick={onClick}>
+            <Plus />
+        </Button>
         </div>
-      )}
+        <div className="flex-auto">
+            {showInput && (
+                <div className="flex justify-between px-6 ">
+                    <Input
+                        type="text"
+                        placeholder="Add Task"
+                        onChange={onChange}
+                        value={task}
+                    />
+                <Button onClick={addTask} className="px-3">Add</Button>
+                </div>
+            )}
+        </div>
+    </div>
     </>
   );
 };
