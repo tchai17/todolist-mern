@@ -9,9 +9,9 @@ function App() {
     <>
       <WelcomeMessage />
       <ToDoList />
-      <div className="card flex flex-col items-center">
+      {/* <div className="card flex flex-col items-center">
         <UselessButton />
-      </div>
+      </div> */}
     </>
   );
 }
