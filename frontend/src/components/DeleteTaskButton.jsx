@@ -8,6 +8,7 @@ function DeleteTaskButton({ _id }) {
       method: "DELETE",
       url: "http://localhost:3000/tasks/" + _id,
     }).catch((error) => console.error("Error deleting task", error));
+    location.reload();
   }
 
   return (
