@@ -64,6 +64,7 @@ function ToDoList() {
   const ToDoItemsMap = toDoItems1.map((task, index) => (
     <ToDoItem
       key={index}
+      _id={task._id}
       description={task.description}
       isDone={task.isDone}
       createdDate={task.createdDate}
