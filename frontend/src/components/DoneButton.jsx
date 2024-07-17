@@ -14,6 +14,7 @@ function DoneButton({ _id, description, isDone, createdDate }) {
         description: description,
       },
     }).catch((error) => console.error("Error marking task as done", error));
+    location.reload();
   }
 
   return <Button onClick={markAsDone}>Done!</Button>;

@@ -61,14 +61,18 @@ function ToDoList() {
   const tableTitleFormat =
     "text-500 font-sans text-lg font-semibold text-start";
 
-  const ToDoItemsMap = toDoItems1.map((task, index) => (
-    <ToDoItem
-      key={index}
-      description={task.description}
-      isDone={task.isDone}
-      createdDate={task.createdDate}
-    />
-  ));
+  const ToDoItemsMap = toDoItems1.map((task, index) => {
+    if (!task.isDone)
+      return (
+        <ToDoItem
+          key={index}
+          _id={task._id}
+          description={task.description}
+          isDone={task.isDone}
+          createdDate={task.createdDate}
+        />
+      );
+  });
 
   if (toDoItems.length === 0) {
     return <p>No toDoItems yet!</p>;
@@ -79,7 +83,7 @@ function ToDoList() {
           <TableHeader>
             <TableRow>
               <TableHead className={tableTitleFormat}>Description</TableHead>
-              <TableHead className={tableTitleFormat}>Done?</TableHead>
+              {/* <TableHead className={tableTitleFormat}>Done?</TableHead> */}
               <TableHead className={tableTitleFormat}>Created Date</TableHead>
               <TableHead className={tableTitleFormat + " text-center"}>
                 Actions
