@@ -82,7 +82,7 @@ function ToDoList() {
               <TableHead className={tableTitleFormat}>Done?</TableHead>
               <TableHead className={tableTitleFormat}>Created Date</TableHead>
               <TableHead className={tableTitleFormat + " text-center"}>
-                Mark As Done
+                Actions
               </TableHead>
             </TableRow>
           </TableHeader>
