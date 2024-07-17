@@ -26,7 +26,7 @@ const AddTask = () => {
     const addTask = () => {
         // make a call to the api to add this task to the to do list
         const date = moment();
-        const currentDate = date.format("D/MM/YYYY");
+        const currentDate = date.format("YYYY/MM/DD");
         axios.post("http://localhost:3000/tasks", {
             description: task,
             isDone: "false",
