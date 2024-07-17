@@ -22,24 +22,22 @@ const AddTask = () => {
     console.log(task);
   };
 
-  const addTask = () => {
+const addTask = () => {
     // make a call to the api to add this task to the to do list
     const date = moment();
-    const currentDate = date.format("YYYY/MM/DD");
-    axios
-      .post("http://localhost:3000/tasks", {
+    const currentDate = date.format("DD/MM/YYYY");
+    axios.post("http://localhost:3000/tasks", {
         description: task,
         isDone: "false",
-        createdDate: currentDate,
-      })
-      .then((response) => {
+        createdDate: currentDate
+    })
+    .then( (response) => {
         console.log(response);
-      })
-      .catch((error) => {
+    })
+    .catch( (error) => {
         console.log(error);
-      });
-    location.reload();
-  };
+    });
+}
 
   return (
     <>
