@@ -8,12 +8,9 @@ function App() {
   return (
     <>
       <WelcomeMessage />
-      <ToDoList/>
+      <ToDoList />
       <div className="card flex flex-col items-center">
         <UselessButton />
-        <div>
-          <ToDoList />
-        </div>
       </div>
     </>
   );

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Task from "./Task";
 import axios from "axios";
 import {
   Table,
@@ -21,11 +22,11 @@ function ToDoList() {
         console.error("There was an error fetching the ToDoList!", error)
       );
   }, []);
-  const tableBorder = " border border-slate-300 p-4 ";
-  const textFormat = "text-500 font-sans text-lg font-semibold";
+
   const tableTitleFormat =
     "text-500 font-sans text-lg font-semibold text-start";
 
+  // sample data, replace when endpoint is setup
   const tasks = [
     {
       description: "test1",
@@ -55,17 +56,12 @@ function ToDoList() {
   ];
 
   const taskItems = tasks.map((task, index) => (
-    <TableRow key={index}>
-      <TableCell className={tableBorder + textFormat}>
-        {task.description}
-      </TableCell>
-      <TableCell className={tableBorder + textFormat}>
-        {task.isDone ? "Yes" : "No"}
-      </TableCell>
-      <TableCell className={tableBorder + textFormat}>
-        {task.createdDate.toLocaleDateString()}
-      </TableCell>
-    </TableRow>
+    <Task
+      key={index}
+      description={task.description}
+      isDone={task.isDone}
+      createdDate={task.createdDate}
+    />
   ));
 
   if (tasks.length === 0) {
