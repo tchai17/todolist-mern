@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ToDoItem from "./ToDoItem";
 import axios from "axios";
+
 import {
   Table,
   TableBody,
@@ -10,6 +11,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import AddTask from "./AddTask";
+
 
 function ToDoList() {
   const [toDoItems1, settoDoItems] = useState([]);
@@ -22,6 +25,7 @@ function ToDoList() {
         console.error("There was an error fetching the ToDoList!", error)
       );
   }, []);
+
 
   const tableTitleFormat =
     "text-500 font-sans text-lg font-semibold text-start";
@@ -82,6 +86,7 @@ function ToDoList() {
           </TableHeader>
           <TableBody>{ToDoItemsMap}</TableBody>
         </Table>
+        <AddTask />
       </div>
     );
   }
