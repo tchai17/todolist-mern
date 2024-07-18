@@ -27,11 +27,13 @@ function ToDoList() {
   }, []);
 
   const handleTaskUpdate = (id, isDone) => {
-    setToDoItems((prevItems) => {
-      return prevItems.map((item) =>
-        item._id === id ? { ...item, isDone } : item
-      );
-    });
+    setToDoItems((prevItems) =>
+      prevItems.map((item) => (item._id === id ? { ...item, isDone } : item))
+    );
+  };
+
+  const handleTaskDelete = (id) => {
+    setToDoItems((prevItems) => prevItems.filter((item) => item._id !== id));
   };
 
   const tableTitleFormat =
@@ -47,6 +49,7 @@ function ToDoList() {
         isDone={task.isDone}
         createdDate={task.createdDate}
         onTaskUpdate={handleTaskUpdate}
+        onTaskDelete={handleTaskDelete}
       />
     ));
 
@@ -60,6 +63,7 @@ function ToDoList() {
         isDone={task.isDone}
         createdDate={task.createdDate}
         onTaskUpdate={handleTaskUpdate}
+        onTaskDelete={handleTaskDelete}
       />
     ));
 
@@ -79,11 +83,10 @@ function ToDoList() {
           </TableRow>
         </TableHeader>
         <TableBody>{notDoneItems}</TableBody>
-        <br></br>
+        <br />
         <h2 className="text-3xl font-semibold px-3.5">Completed</h2>
         <TableBody>{doneItems}</TableBody>
       </Table>
-
       <AddTask />
     </>
   );
