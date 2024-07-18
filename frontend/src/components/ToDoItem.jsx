@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import { TableCell, TableRow } from "./ui/table";
 import DeleteTaskButton from "./DeleteTaskButton";
-import DoneButton from "./DoneButton";
 import { Checkbox } from "@/components/ui/checkbox";
 
-const cellFormat = "p-4 text-500 text-lg font-semibold";
+const cellFormat = "p-4 text-500 text-lg font-semibold no-underline";
 const inactiveFormat = "line-through opacity-50";
 
 function ToDoItem({ _id, description, isDone, createdDate }) {
@@ -33,14 +32,13 @@ function ToDoItem({ _id, description, isDone, createdDate }) {
 
   return (
     <TableRow className={isDoneState ? inactiveFormat : ""}>
-      <TableCell className={cellFormat + " space-x-5"}>
+      <TableCell className={cellFormat + " space-x-5 text-wrap"}>
         <Checkbox onClick={handleCheckboxClick} checked={isDoneState} />
         <label>{description}</label>
       </TableCell>
       <TableCell className={cellFormat}>
         {new Date(createdDate).toLocaleDateString()}
       </TableCell>
-      {/* <TableCell>{isDoneState ? "Yes" : "No"}</TableCell> */}
       <TableCell className={cellFormat + " text-center"}>
         <DeleteTaskButton _id={_id} />
       </TableCell>
