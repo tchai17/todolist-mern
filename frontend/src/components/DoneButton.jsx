@@ -6,15 +6,23 @@ function DoneButton({ _id, description, isDone, createdDate }) {
   function markAsDone() {
     axios({
       method: "PUT",
-      url: "http://localhost:3000/tasks/" + _id,
+      url: `http://localhost:3000/tasks/${_id}`,
       data: {
-        _id: _id,
-        isDone: true, // set task as done
-        createdDate: createdDate,
         description: description,
+        isDone: true,
+        createdDate: createdDate,
       },
-    }).catch((error) => console.error("Error marking task as done", error));
-    location.reload();
+      timeout: 5000, // Add a timeout of 5 seconds
+    })
+      .then((response) => {
+        console.log("Task marked as done", response);
+        console.log(response.data);
+        // Refresh data on the page
+        location.reload();
+      })
+      .catch((error) => {
+        console.error("Error marking task as done", error);
+      });
   }
 
   return <Button onClick={markAsDone}>Done!</Button>;
