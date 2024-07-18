@@ -31,16 +31,19 @@ function ToDoItem({ _id, description, isDone, createdDate, onTaskUpdate }) {
   };
 
   const handleCheckboxClick = useCallback(() => {
+    // Toggle the isDoneState
     const newIsDoneState = !isDoneState;
     setIsDoneState(newIsDoneState);
 
+    // Wait for 1.5 seconds and then call the onTaskUpdate function
     setTimeout(() => {
+      // Call the onTaskUpdate function with the updated _id and newIsDoneState
       onTaskUpdate(_id, newIsDoneState);
     }, 1500);
 
+    // Call the updateTaskStatus function with the updated _id, description, newIsDoneState, and createdDate
     updateTaskStatus(_id, description, newIsDoneState, createdDate);
   }, [isDoneState, _id, description, createdDate, onTaskUpdate]);
-
   return (
     <TableRow className={isDoneState ? inactiveFormat : ""}>
       <TableCell className={cellFormat + " space-x-5 text-wrap flex"}>
