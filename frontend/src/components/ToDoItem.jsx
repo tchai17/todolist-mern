@@ -35,7 +35,7 @@ function ToDoItem({ _id, description, isDone, createdDate }) {
     <TableRow className={isDoneState ? inactiveFormat : ""}>
       <TableCell className={cellFormat + " space-x-5"}>
         <Checkbox onClick={() => handleCheckboxClick()} checked={isDoneState} />
-        <label> {description}</label>
+        <label>{description}</label>
       </TableCell>
       <TableCell className={cellFormat}>
         {new Date(createdDate).toLocaleDateString()}
