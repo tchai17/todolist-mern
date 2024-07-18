@@ -46,6 +46,26 @@ router.get("/", async (req, res) => {
   }
 });
 
+// Get all COMPLETED tasks from database
+router.get("/completed", async (req, res) => {
+  try {
+    const tasks = await Task.find({});
+		const completedTasks = [];
+
+		tasks.forEach(task => {
+			if (task.isDone) {
+				completedTasks.push(task);
+			}
+		});
+
+    return res.status(200).json(completedTasks);
+		
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send({ message: error.message });
+  }
+});
+
 // Update task in the database
 router.put("/:id", async (req, res) => {
   try {
