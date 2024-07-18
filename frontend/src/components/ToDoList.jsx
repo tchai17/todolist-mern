@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ToDoItem from "./ToDoItem";
 import axios from "axios";
-
-// import from shadcn
 import {
   Table,
   TableBody,
@@ -15,37 +13,7 @@ import {
 import AddTask from "./AddTask";
 
 function ToDoList() {
-  // sample data, replace when endpoint is setup
-  // const toDoItems = [
-  //   {
-  //     description: "test1",
-  //     isDone: true,
-  //     createdDate: new Date("2024-01-01"),
-  //   },
-  //   {
-  //     description: "test2",
-  //     isDone: false,
-  //     createdDate: new Date("2024-02-01"),
-  //   },
-  //   {
-  //     description: "test3",
-  //     isDone: true,
-  //     createdDate: new Date("2024-05-01"),
-  //   },
-  //   {
-  //     description: "test4",
-  //     isDone: true,
-  //     createdDate: new Date("2024-07-01"),
-  //   },
-  //   {
-  //     description: "test5",
-  //     isDone: false,
-  //     createdDate: new Date("2024-07-01"),
-  //   },
-  // ];
-  const toDoItems = [];
-
-  const [toDoItems1, setToDoItems] = useState(toDoItems);
+  const [toDoItems, setToDoItems] = useState([]);
 
   useEffect(() => {
     axios({
@@ -58,37 +26,42 @@ function ToDoList() {
       );
   }, []);
 
-  // define css classes for table title
+  const handleTaskUpdate = (id, isDone) => {
+    setToDoItems((prevItems) => {
+      return prevItems.map((item) =>
+        item._id === id ? { ...item, isDone } : item
+      );
+    });
+  };
+
   const tableTitleFormat =
     "text-500 font-sans text-lg font-semibold text-start subpixel-antialiased";
 
-  const notDoneItems = toDoItems1.map((task, index) => {
-    if (!task.isDone) {
-      return (
-        <ToDoItem
-          key={index}
-          _id={task._id}
-          description={task.description}
-          isDone={task.isDone}
-          createdDate={task.createdDate}
-        />
-      );
-    }
-  });
+  const notDoneItems = toDoItems
+    .filter((task) => !task.isDone)
+    .map((task) => (
+      <ToDoItem
+        key={task._id}
+        _id={task._id}
+        description={task.description}
+        isDone={task.isDone}
+        createdDate={task.createdDate}
+        onTaskUpdate={handleTaskUpdate}
+      />
+    ));
 
-  const doneItems = toDoItems1.map((task, index) => {
-    if (task.isDone) {
-      return (
-        <ToDoItem
-          key={index}
-          _id={task._id}
-          description={task.description}
-          isDone={task.isDone}
-          createdDate={task.createdDate}
-        />
-      );
-    }
-  });
+  const doneItems = toDoItems
+    .filter((task) => task.isDone)
+    .map((task) => (
+      <ToDoItem
+        key={task._id}
+        _id={task._id}
+        description={task.description}
+        isDone={task.isDone}
+        createdDate={task.createdDate}
+        onTaskUpdate={handleTaskUpdate}
+      />
+    ));
 
   return (
     <>
@@ -106,19 +79,8 @@ function ToDoList() {
           </TableRow>
         </TableHeader>
         <TableBody>{notDoneItems}</TableBody>
-      </Table>
-      <br></br>
-      <h2 className="text-3xl font-semibold px-3.5">Completed</h2>
-      <Table className="font-sans">
-        <TableHeader>
-          <TableRow>
-            <TableHead className={tableTitleFormat}>Description</TableHead>
-            <TableHead className={tableTitleFormat}>Created Date</TableHead>
-            <TableHead className={tableTitleFormat + " text-center"}>
-              Actions
-            </TableHead>
-          </TableRow>
-        </TableHeader>
+        <br></br>
+        <h2 className="text-3xl font-semibold px-3.5">Completed</h2>
         <TableBody>{doneItems}</TableBody>
       </Table>
 
@@ -126,4 +88,5 @@ function ToDoList() {
     </>
   );
 }
+
 export default ToDoList;
