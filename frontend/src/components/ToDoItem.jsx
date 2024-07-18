@@ -40,14 +40,8 @@ function ToDoItem({ _id, description, isDone, createdDate }) {
       <TableCell className={cellFormat}>
         {new Date(createdDate).toLocaleDateString()}
       </TableCell>
-      <TableCell>{isDoneState ? "Yes" : "No"}</TableCell>
+      {/* <TableCell>{isDoneState ? "Yes" : "No"}</TableCell> */}
       <TableCell className={cellFormat + " text-center space-x-10"}>
-        <DoneButton
-          _id={_id}
-          description={description}
-          isDone={isDoneState}
-          createdDate={createdDate}
-        />
         <DeleteTaskButton _id={_id} />
       </TableCell>
     </TableRow>
