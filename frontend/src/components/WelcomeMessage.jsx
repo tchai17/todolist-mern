@@ -10,6 +10,4 @@ function WelcomeMessage() {
   );
 }
 
-// hover:font-serif
-
 export default WelcomeMessage;

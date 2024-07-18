@@ -11,22 +11,29 @@ function ToDoItem({ _id, description, isDone, createdDate, onTaskUpdate }) {
   const [isDoneState, setIsDoneState] = useState(isDone);
 
   const updateTaskStatus = (_id, description, isDone, createdDate) => {
+    // Make a PUT request to the backend to update the task status
     axios({
+      // Set the HTTP method to PUT
       method: "PUT",
+      // Set the URL of the request to the backend task endpoint with the task ID
       url: `http://localhost:3000/tasks/${_id}`,
+      // Set the data to be sent in the request body
       data: {
-        description: description,
-        isDone: isDone,
-        createdDate: createdDate,
+        description: description, // The updated description of the task
+        isDone: isDone, // The updated completion status of the task
+        createdDate: createdDate, // The updated creation date of the task
       },
+      // Set the timeout of the request to 5000 milliseconds (5 seconds), important to avoid axios loading problems
       timeout: 5000,
     })
+      // If the request is successful, log a message to the console
       .then((response) => {
         console.log("Task marked as done", response);
       })
+      // If the request fails, log an error message to the console and revert the state to the original if the request fails
       .catch((error) => {
         console.error("Error marking task as done", error);
-        setIsDoneState(!isDone); // Revert state to original if request fails
+        setIsDoneState(!isDone);
       });
   };
 
