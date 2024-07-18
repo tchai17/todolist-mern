@@ -32,8 +32,12 @@ function ToDoItem({ _id, description, isDone, createdDate }) {
 
   return (
     <TableRow className={isDoneState ? inactiveFormat : ""}>
-      <TableCell className={cellFormat + " space-x-5 text-wrap"}>
-        <Checkbox onClick={handleCheckboxClick} checked={isDoneState} />
+      <TableCell className={cellFormat + " space-x-5 text-wrap flex"}>
+        <Checkbox
+          onClick={handleCheckboxClick}
+          checked={isDoneState}
+          className="my-1.5"
+        />
         <label>{description}</label>
       </TableCell>
       <TableCell className={cellFormat}>
