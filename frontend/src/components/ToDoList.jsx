@@ -16,33 +16,34 @@ import AddTask from "./AddTask";
 
 function ToDoList() {
   // sample data, replace when endpoint is setup
-  const toDoItems = [
-    {
-      description: "test1",
-      isDone: true,
-      createdDate: new Date("2024-01-01"),
-    },
-    {
-      description: "test2",
-      isDone: false,
-      createdDate: new Date("2024-02-01"),
-    },
-    {
-      description: "test3",
-      isDone: true,
-      createdDate: new Date("2024-05-01"),
-    },
-    {
-      description: "test4",
-      isDone: true,
-      createdDate: new Date("2024-07-01"),
-    },
-    {
-      description: "test5",
-      isDone: false,
-      createdDate: new Date("2024-07-01"),
-    },
-  ];
+  // const toDoItems = [
+  //   {
+  //     description: "test1",
+  //     isDone: true,
+  //     createdDate: new Date("2024-01-01"),
+  //   },
+  //   {
+  //     description: "test2",
+  //     isDone: false,
+  //     createdDate: new Date("2024-02-01"),
+  //   },
+  //   {
+  //     description: "test3",
+  //     isDone: true,
+  //     createdDate: new Date("2024-05-01"),
+  //   },
+  //   {
+  //     description: "test4",
+  //     isDone: true,
+  //     createdDate: new Date("2024-07-01"),
+  //   },
+  //   {
+  //     description: "test5",
+  //     isDone: false,
+  //     createdDate: new Date("2024-07-01"),
+  //   },
+  // ];
+  const toDoItems = [];
 
   const [toDoItems1, setToDoItems] = useState(toDoItems);
 
@@ -73,27 +74,23 @@ function ToDoList() {
     );
   });
 
-  if (toDoItems.length === 0) {
-    return <p>No toDoItems yet!</p>;
-  } else {
-    return (
-      <>
-        <Table className="font-sans">
-          <TableHeader>
-            <TableRow>
-              <TableHead className={tableTitleFormat}>Description</TableHead>
-              {/* <TableHead className={tableTitleFormat}>Done?</TableHead> */}
-              <TableHead className={tableTitleFormat}>Created Date</TableHead>
-              <TableHead className={tableTitleFormat + " text-center"}>
-                Actions
-              </TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>{ToDoItemsMap}</TableBody>
-        </Table>
-        <AddTask />
-      </>
-    );
-  }
+  return (
+    <>
+      <Table className="font-sans">
+        <TableHeader>
+          <TableRow>
+            <TableHead className={tableTitleFormat}>Description</TableHead>
+            {/* <TableHead className={tableTitleFormat}>Done?</TableHead> */}
+            <TableHead className={tableTitleFormat}>Created Date</TableHead>
+            <TableHead className={tableTitleFormat + " text-center"}>
+              Actions
+            </TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>{ToDoItemsMap}</TableBody>
+      </Table>
+      <AddTask />
+    </>
+  );
 }
 export default ToDoList;
