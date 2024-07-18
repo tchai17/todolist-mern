@@ -17,9 +17,8 @@ const AddTask = () => {
   const onChange = (e) => {
     let name = e.target.name;
     let value = e.target.value;
-    console.log(name);
+    console.log(e.keyCode);
     setTask(value);
-    console.log(task);
   };
 
 const addTask = () => {
@@ -57,7 +56,7 @@ const addTask = () => {
                         onChange={onChange}
                         value={task}
                     />
-                <Button onClick={addTask} className="px-3">Add</Button>
+                <Button type="submit" onClick={addTask} className="px-3">Add</Button>
                 </div>
             )}
         </div>
