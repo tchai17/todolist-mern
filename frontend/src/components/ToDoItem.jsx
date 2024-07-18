@@ -11,49 +11,43 @@ const inactiveFormat = "line-through opacity-50";
 function ToDoItem({ _id, description, isDone, createdDate }) {
   const [isDoneState, setIsDoneState] = useState(isDone);
 
-  function markAsDone() {
+  const handleCheckboxClick = () => {
     axios({
       method: "PUT",
       url: `http://localhost:3000/tasks/${_id}`,
       data: {
         description: description,
-        isDone: true,
+        isDone: !isDoneState, // Toggle the isDoneState
         createdDate: createdDate,
       },
       timeout: 5000, // Add a timeout of 5 seconds
     })
       .then((response) => {
         console.log("Task marked as done", response);
-        console.log(response.data);
-        // Refresh data on the page
-        location.reload();
+        setIsDoneState(!isDoneState); // Update state after successful request
       })
       .catch((error) => {
         console.error("Error marking task as done", error);
       });
-  }
-
-  const handleCheckboxClick = () => {
-    markAsDone();
-    setIsDoneState(!isDoneState);
   };
 
   return (
     <TableRow className={isDoneState ? inactiveFormat : ""}>
       <TableCell className={cellFormat + " space-x-5"}>
-        <Checkbox onClick={() => handleCheckboxClick()} checked={isDoneState} />
+        <Checkbox onClick={handleCheckboxClick} checked={isDoneState} />
         <label>{description}</label>
       </TableCell>
       <TableCell className={cellFormat}>
         {new Date(createdDate).toLocaleDateString()}
       </TableCell>
+      <TableCell>{isDoneState ? "Yes" : "No"}</TableCell>
       <TableCell className={cellFormat + " text-center space-x-10"}>
-        {/* <DoneButton
+        <DoneButton
           _id={_id}
           description={description}
-          isDone={isDone}
+          isDone={isDoneState}
           createdDate={createdDate}
-        /> */}
+        />
         <DeleteTaskButton _id={_id} />
       </TableCell>
     </TableRow>
